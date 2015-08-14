@@ -46,7 +46,7 @@ RUN install -d /srv/http \
 
 VOLUME ["/etc/httpd/sites-enabled", "/etc/ssl/apache", "/var/log/apache"]
 
-RUN echo root:toor | chpasswd
+# RUN echo root:toor | chpasswd
 
 # ENV http_proxy ''
 # ENV https_proxy ''
