@@ -5,7 +5,7 @@ MAINTAINER dev@fedux.org
 # ENV https_proxy https://172.17.42.1:3128
 
 # Install and activate apache
-RUN yum install -y httpd \
+RUN yum install -y httpd mod_ssl\
   && systemctl enable httpd \
   && yum clean -y all
 
