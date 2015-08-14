@@ -25,6 +25,9 @@ RUN rm -r /etc/httpd/conf.d/* \
     # Add section to load enabled sites
     && sed -ri -e '$aIncludeOptional sites-enabled/*.conf' /etc/httpd/conf/httpd.conf
 
+# Add SSL/TLS configuration
+ADD ssl.conf /etc/httpd/conf.d/ssl.conf
+
 # Download configuration
 RUN cd /tmp \
   && curl -L https://github.com/h5bp/server-configs-apache/archive/master.tar.gz | tar -xzf - -C .\
@@ -43,7 +46,7 @@ RUN install -d /srv/http \
 
 VOLUME ["/etc/httpd/sites-enabled", "/etc/ssl/apache", "/var/log/apache"]
 
-# RUN echo root:toor | chpasswd
+RUN echo root:toor | chpasswd
 
 # ENV http_proxy ''
 # ENV https_proxy ''

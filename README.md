@@ -61,6 +61,7 @@ Listen 5000
 
   SSLCertificateFile /etc/ssl/httpd/docker-registry/server.crt
   SSLCertificateKeyFile /etc/ssl/httpd/docker-registry/server.key
+  SSLCertificateChainFile /etc/ssl/httpd/docker-registry/chain.crt
 
   ServerName docker-registry.in.ratiodata.de
   ServerAlias docker-registry
@@ -68,4 +69,19 @@ Listen 5000
   ProxyPass / http://docker-registry:5000/
   ProxyPassReverse / http://docker-registry:5000/
 </VirtualHost>
+~~~
+
+## Running Data Container for Log Files
+
+~~~
+docker run -v $(pwd)/log:/var/log/apache feduxorg/centos-apache:data
+~~~
+
+## Help for SSL-configuration
+
+German: https://www.thomas-krenn.com/de/wiki/Apache_und_OpenSSL_f%C3%BCr_Forward_Secrecy_konfigurieren
+
+~~~
+openssl dhparam -out dhparam.pem 4096
+cat dhparam.pem >> server.crt
 ~~~
