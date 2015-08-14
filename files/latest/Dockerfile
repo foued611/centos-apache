@@ -38,7 +38,7 @@ RUN install -d /srv/http \
     # Create ssl directory
     && install -d -g apache -m 0750 /etc/ssl/apache
 
-VOLUME ["/etc/httpd/sites-enabled", "/etc/ssl/apache"]
+VOLUME ["/etc/httpd/sites-enabled", "/etc/ssl/apache", "/var/log/apache"]
 
 # RUN echo root:toor | chpasswd
 
