@@ -50,3 +50,22 @@ Listen 5000
   ProxyPassReverse / http://docker-registry:5000/
 </VirtualHost>
 ~~~
+
+The same with SSL-Offloading.
+
+~~~apache
+Listen 5000
+
+<VirtualHost *:5000>
+  SSLEngine On
+
+  SSLCertificateFile /etc/ssl/httpd/docker-registry/server.crt
+  SSLCertificateKeyFile /etc/ssl/httpd/docker-registry/server.key
+
+  ServerName docker-registry.in.ratiodata.de
+  ServerAlias docker-registry
+
+  ProxyPass / http://docker-registry:5000/
+  ProxyPassReverse / http://docker-registry:5000/
+</VirtualHost>
+~~~
