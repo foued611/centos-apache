@@ -17,8 +17,8 @@ RUN rm -r /etc/httpd/conf.d/* \
     && sed -ri -e 's#/var/www/html#/srv/http#' /etc/httpd/conf/httpd.conf \
     && sed -ri -e 's#/var/www#/srv/http#' /etc/httpd/conf/httpd.conf \
     # Logs
-    && sed -ri -e 's#/logs/error_log#/var/log/apache/error_log#' /etc/httpd/conf/httpd.conf \
-    && sed -ri -e 's#/logs/access_log#/var/log/apache/access_log#' /etc/httpd/conf/httpd.conf \
+    && sed -ri -e 's#logs/error_log#/var/log/apache/error_log#' /etc/httpd/conf/httpd.conf \
+    && sed -ri -e 's#logs/access_log#/var/log/apache/access_log#' /etc/httpd/conf/httpd.conf \
     # Activate Event Worker
     && sed -ri -e '/mpm_prefork_module/s/LoadModule/#LoadModule/' /etc/httpd/conf.modules.d/00-mpm.conf \
     && sed -ri -e '/mpm_event_module/s/#LoadModule/LoadModule/' /etc/httpd/conf.modules.d/00-mpm.conf \
